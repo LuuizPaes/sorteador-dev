@@ -5,27 +5,32 @@ function generateNumber() {
   const max = Math.floor(document.querySelector(".input-max").value);
   const resultNumber = document.querySelector(".result-number");
 
-  const result = Math.floor(Math.random() * (max - min) + min);
+  if (max > min) {
+    const result = Math.floor(Math.random() * (max - min) + min);
+    resultNumber.innerHTML = result;
 
-  resultNumber.innerHTML = result;
+    efecct();
+  } else {
+    alert("O número inicial não pode ser menor que o número final");
+  }
+}
 
+function efecct() {
   let params = {
-    particleCount: 500, // Quantidade de confetes
-    spread: 90, // O quanto eles se espalham
-    startVelocity: 70, // Velocidade inicial
-    origin: { x: 0, y: 0.5 }, // Posição inicial na tela
-    angle: 45, // Ângulo em que os confetes serão lançados
+    particleCount: 500, 
+    spread: 90, 
+    startVelocity: 70, 
+    origin: { x: 0, y: 0.5 }, 
+    angle: 45, 
   };
+
   
-  // Joga confetes da esquerda pra direita
   confetti(params);
+
   
-  // Joga confetes da direita para a esquerda
   params.origin.x = 1;
   params.angle = 135;
   confetti(params);
-  
 }
-
 
 button.addEventListener("click", generateNumber);
